@@ -1,0 +1,6 @@
+kafka:
+  producer:
+    id: producerServer
+  server: localhost:9092
+  group: demo
+  topic: test
