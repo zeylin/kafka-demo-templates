@@ -9,9 +9,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class SpaceshipListener {
 
-    public static final String TOPIC = "test";
-
-    @KafkaListener(topics = {TOPIC}, containerFactory = "kafkaListenerContainerFactory")
+    @KafkaListener(topics = {"${kafka.topic}"}, containerFactory = "kafkaListenerContainerFactory")
     public void onListen(SpaceshipDto dto) {
         log.info("=> Received: {}", dto);
     }

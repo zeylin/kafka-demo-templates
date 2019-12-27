@@ -2,7 +2,6 @@ package com.zeylin.kafkademotemplates.config;
 
 import com.zeylin.kafkademotemplates.config.serializers.SpaceshipDeserializer;
 import com.zeylin.kafkademotemplates.dto.SpaceshipDto;
-import com.zeylin.kafkademotemplates.service.SpaceshipListener;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.LongDeserializer;
@@ -27,13 +26,16 @@ public class KafkaConsumerConfig {
     @Value("${kafka.group}")
     private String kafkaGroupId;
 
+    @Value("${kafka.topic}")
+    private String kafkaTopic;
+
     @Bean
     public KafkaListenerContainerFactory<?> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<Long, SpaceshipDto> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         factory.setErrorHandler((e, consumerRecord) ->
-                log.warn("ERROR: Inbound message from topic: {}, message: {}", SpaceshipListener.TOPIC, e.getCause())
+                log.warn("ERROR: Inbound message from topic: {}, message: {}", kafkaTopic, e.getCause())
         );
         return factory;
     }

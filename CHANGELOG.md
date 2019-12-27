@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [1.1.1-SNAPSHOT] - 2019-12-27
+### Changed
+- Moved topic name to application config properties
+
 ## [1.1.0-SNAPSHOT] - 2019-12-27
 ### Added
 - Send and receive messages with Kafka
